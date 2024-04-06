@@ -1,6 +1,9 @@
 import {getImgUrl} from "../utils/cine-utility.js";
+import {useContext} from "react";
+import {MovieContext} from "../context/indexContext.js";
 
-const MovieDetailModal = ({movie, onClose}) => {
+const MovieDetailModal = ({movie, onClose, onCartAdd}) => {
+    const {cartData, setCartData} = useContext(MovieContext)
     return (
         <div
             className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm"
@@ -30,6 +33,7 @@ const MovieDetailModal = ({movie, onClose}) => {
                             <a
                                 className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
                                 href="#"
+                                onClick={(e) => onCartAdd(e, movie)}
                             >
                                 <img src="../../src/assets/tag.svg" alt=""/>
                                 <span>{movie.price} | Add to Cart</span>
