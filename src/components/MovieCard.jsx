@@ -39,7 +39,7 @@ const MovieCard = ({movie}) => {
             }
 
             <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
-                <a onClick={() => handleMovieSelection(movie)}>
+                <div onClick={() => handleMovieSelection(movie)}>
                     <img className="w-full object-cover" src={getImgUrl(movie.cover)} alt={movie.title}/>
                     <figcaption className="pt-4">
                         <h3 className="text-xl mb-1">{movie.title}</h3>
@@ -53,7 +53,7 @@ const MovieCard = ({movie}) => {
                             <span>{movie.price} | Add to Cart</span>
                         </a>
                     </figcaption>
-                </a>
+                </div>
             </figure>
         </>
 

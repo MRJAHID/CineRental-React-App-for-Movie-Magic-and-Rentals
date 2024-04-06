@@ -3,10 +3,11 @@ import CartDetails from "./CartDetails.jsx";
 import {MovieContext} from "../context/indexContext.js";
 
 const Header = () => {
-    const [showCard, setShowCard] = useState(false);
+    const [showCard, setShowCard] = useState(true);
     const {cartData} = useContext(MovieContext)
     function handleCardShow() {
         setShowCard(true);
+        console.log('True')
     }
     return (
         <header>
