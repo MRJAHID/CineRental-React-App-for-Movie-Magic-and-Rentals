@@ -1,6 +1,16 @@
+import {useState} from "react";
+import CartDetails from "./CartDetails.jsx";
+
 const Header = () => {
+    const [showCard, setShowCard] = useState(false);
+    function handleCardShow() {
+        setShowCard(true);
+    }
     return (
         <header>
+            {
+                showCard && <CartDetails onClose={setShowCard(false)}/>
+            }
             <nav className="container flex items-center justify-between space-x-10 py-6">
                 <a href="index.html">
                     <img src="../../src/assets/logo.svg" width="139" height="26" alt=""/>
@@ -9,7 +19,7 @@ const Header = () => {
                 <ul className="flex items-center space-x-5">
                     <li>
                         <a className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
-                           href="#">
+                           href="#" >
                             <img src="../../src/assets/ring.svg" width="24" height="24" alt=""/>
                         </a>
                     </li>
@@ -21,7 +31,7 @@ const Header = () => {
                     </li>
                     <li>
                         <a className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
-                           href="#">
+                           href="#" onClick={handleCardShow}>
                             <img src="../../src/assets/shopping-cart.svg" width="24" height="24" alt=""/>
                         </a>
                     </li>
