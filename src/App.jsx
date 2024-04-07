@@ -2,15 +2,16 @@ import Header from "./components/Header.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import MovieList from "./components/MovieList.jsx";
 import {MovieContext, ThemeContext} from "./context/indexContext.js";
-import {useState} from "react";
+import {useReducer, useState} from "react";
+import {cartReducer, initialState} from "./reducers/CartReducer.js";
 
 export default function App() {
-    const [cartData, setCartData] = useState([]);
-    const [darkMode, setDarkMode] = useState(true);
+     const [darkMode, setDarkMode] = useState(true);
+    const [state, dispatch] = useReducer(cartReducer, initialState);
     return (
         <>
             <ThemeContext.Provider value={{darkMode, setDarkMode}}>
-                <MovieContext.Provider value={{cartData, setCartData}}>
+                <MovieContext.Provider value={{state, dispatch}}>
                     <div className={`h-full w-full ${darkMode ? "dark" : ""}`}>
                         <Header/>
                         <main>

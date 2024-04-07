@@ -7,6 +7,8 @@ import {MovieContext} from "../context/indexContext.js";
 const MovieCard = ({movie}) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const {state, dispatch} = useContext(MovieContext)
+
 
     function handleCloseModal() {
         setShowModal(false);
@@ -18,15 +20,19 @@ const MovieCard = ({movie}) => {
         setSelectedMovie(movie);
     }
 
-    const {cartData, setCartData} = useContext(MovieContext)
 
     function handleAddToCart(e, movie) {
         e.stopPropagation();
 
-        const found = cartData.find(item => item.id === movie.id);
+        const found = state.cartData.find(item => item.id === movie.id);
 
         if (!found){
-            setCartData([...cartData, movie]);
+            dispatch({
+                type: 'ADDCART',
+                payload: {
+                    ...movie,
+                }
+            });
         } else {
             console.log(`The movie ${movie.title} has been added to the Cart Already`);
         }
