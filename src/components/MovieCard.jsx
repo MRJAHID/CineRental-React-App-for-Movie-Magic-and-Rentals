@@ -3,6 +3,8 @@ import Rating from "./Rating.jsx";
 import {useContext, useState} from "react";
 import MovieDetailModal from "./MovieDetailModal.jsx";
 import {MovieContext} from "../context/indexContext.js";
+import {  toast } from 'react-toastify';
+
 
 const MovieCard = ({movie}) => {
     const [showModal, setShowModal] = useState(false);
@@ -33,8 +35,16 @@ const MovieCard = ({movie}) => {
                     ...movie,
                 }
             });
+
+            toast.success(`Movie ${movie.title} added successfully`, {
+                position: "bottom-right",
+                className: 'foo-bar'
+            })
+
         } else {
-            console.log(`The movie ${movie.title} has been added to the Cart Already`);
+            toast.error(`The movie ${movie.title} has been added to the Cart Already`, {
+                position: "bottom-right",
+            })
         }
     }
 
@@ -45,7 +55,7 @@ const MovieCard = ({movie}) => {
             }
 
             <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
-                <div onClick={() => handleMovieSelection(movie)}>
+                <a onClick={() => handleMovieSelection(movie)}>
                     <img className="w-full object-cover" src={getImgUrl(movie.cover)} alt={movie.title}/>
                     <figcaption className="pt-4">
                         <h3 className="text-xl mb-1">{movie.title}</h3>
@@ -53,13 +63,13 @@ const MovieCard = ({movie}) => {
                         <div className="flex items-center space-x-1 mb-5">
                             <Rating value={movie.rating}/>
                         </div>
-                        <a className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
+                        <button className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
                            href="#" onClick={(e) => handleAddToCart(e, movie)}>
                             <img src="../../src/assets/tag.svg" alt=""/>
                             <span>{movie.price} | Add to Cart</span>
-                        </a>
+                        </button>
                     </figcaption>
-                </div>
+                </a>
             </figure>
         </>
 

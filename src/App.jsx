@@ -4,6 +4,8 @@ import MovieList from "./components/MovieList.jsx";
 import {MovieContext, ThemeContext} from "./context/indexContext.js";
 import {useReducer, useState} from "react";
 import {cartReducer, initialState} from "./reducers/CartReducer.js";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
      const [darkMode, setDarkMode] = useState(true);
@@ -21,6 +23,7 @@ export default function App() {
                             </div>
                         </main>
                     </div>
+                    <ToastContainer />
                 </MovieContext.Provider>
             </ThemeContext.Provider>
         </>

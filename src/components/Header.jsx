@@ -5,7 +5,7 @@ import Sun from '../assets/icons/sun.svg'
 import Moon from '../assets/icons/moon.svg'
 
 const Header = () => {
-    const [showCard, setShowCard] = useState(true);
+    const [showCard, setShowCard] = useState(false);
     const {state} = useContext(MovieContext)
     const {darkMode, setDarkMode} = useContext(ThemeContext)
     function handleCardShow() {
@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <header>
             {
-                showCard && <CartDetails onClose={setShowCard(false)}/>
+                showCard && <CartDetails onClose={() => setShowCard(false)}/>
             }
             <nav className="container flex items-center justify-between space-x-10 py-6">
                 <a href="index.html">

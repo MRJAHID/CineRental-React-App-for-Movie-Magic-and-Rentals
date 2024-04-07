@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {MovieContext} from "../context/indexContext.js";
 import {getImgUrl} from "../utils/cine-utility.js";
+import {toast} from "react-toastify";
 
 const CartDetails = ({onClose}) => {
     const {state, dispatch} = useContext(MovieContext);
@@ -11,6 +12,10 @@ const CartDetails = ({onClose}) => {
             type: 'REMOVECART',
             payload: item,
         });
+
+        toast.success(`Removed ${item.title} from the Cart`, {
+            position: "bottom-right",
+        })
     }
 
     return (
