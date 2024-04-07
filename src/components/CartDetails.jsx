@@ -7,7 +7,7 @@ const CartDetails = ({onClose}) => {
 
     function handleDeleteCart(event, item) {
         event.preventDefault();
-        dispatch({
+        dispatch ({
             type: 'REMOVECART',
             payload: item,
         });
